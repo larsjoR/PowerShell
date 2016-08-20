@@ -12,4 +12,4 @@ Write-Slack-Report | Write the results of a custom report to your Slack channel
 
 ![Capture1](/images/SlackBot2.PNG)
 
-![Capture2](/images/SlackBot1.png)
+![Capture2](/images/SlackBot1.PNG)
