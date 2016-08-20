@@ -78,7 +78,7 @@
                           title_link = $ReportUrl;
                           text = $AttachmentInfotext;
                           fields = @( $AttachmentFields )
-                          image_url = "http://www.marinit.no/Files/Templates/Designs/MarinIT/img/MIT-logo-global.png";
+                          image_url = "http://vignette2.wikia.nocookie.net/thecreatures/images/4/48/Yoshi.png/revision/latest?cb=20150109223009";
                           thumb_url = "https://d1tmir783i2ibf.cloudfront.net/media/p/23x23/1418047564/tmmaster_ikon.png";
                           footer = $FooterMessage
                          
