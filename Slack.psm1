@@ -94,6 +94,7 @@
 
         $FooterMessage = "Brought to you by -" + $Botname + " BOT-"
 
+        ## Check report status and set color accordingly
         Switch ($ReportStatus) {
             "Good" { $Color = $Green }
             "Poor" { $Color = $Yellow }
@@ -101,20 +102,21 @@
             default { $Color = "#D4CDCC"}
         }
 
-
+        ## The nested fields in the attachment
         $AttachmentFields = @{
                             title = "Status";
                             value = $ReportStatus;
                             short = "false";  
                           } 
 
+        ## The actual attachment of the message
         $Attachments = @{
                           fallback = "This is the fallback";
                           color = $Color;
                           pretext = $AttachmentPretext;
                           author_name = $Author;
                           author_link = "#";
-                          author_icon = ":grinning:";
+                          author_icon = "#";
                           title = $AttachmentTitle;
                           title_link = $ReportUrl;
                           text = $AttachmentInfotext;
@@ -125,7 +127,7 @@
                           footer_icon = $FooterIconUrl
                           } 
 
-
+        ## Wrap the payload and convert to Json. Depth parameter defines how many levels the Json object is nested. 
         $Payload = @{    text ="Automatic PowerShell reporting cycle completed";
                          username = $Botname; 
                          icon_emoji = $PostIcon;
