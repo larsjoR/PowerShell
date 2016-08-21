@@ -1,26 +1,32 @@
-# Write-Slack incoming webhooks
+# A small PowerShell module for Slack webhook messages.
 
 Functions | Purpose
 ----------|--------
-Write-Slack-Message | Write a simple Slack message to your channel
-Write-Slack-Report | Write the results of a custom report to your Slack channel
+Write-SlackMessage | Write a simple Slack message to your channel
+Write-SlackReport | Write the results of a custom report to your Slack channel
 
-Type Get-Help for more info 
+Type `Get-Help -Name <Function name>` for more info. The functions are documented. 
 
 **Examples**
 
-`Write-Slack-Message -WebHookUrl $myWebHook -Message "My Slack message " -Botname "MyBotName" -Icon ":nerd_face:"`
+`Write-SlackMessage -WebHookUrl $myWebHook -Message "My Slack message " -Botname "MyBotName" -Icon ":nerd_face:"`
 
-`Write-Slack-Report -WebHookUrl $myWebHook 
-		    -Botname "MyBotName" 
-		    -ReportUrl "myReportUri" 
-	            -AttachmentInfotext "This is a descriptive text" 
-		    -ReportStatus "Poor" -Author "Testor IT"`
+`Write-Slack-Report -WebHookUrl $WBH `
+                    -Botname "RoBot" `
+                    -ReportUrl "http://myurl.com" `
+                    -AttachmentInfotext "Scanned 43 objects" `
+                    -ReportStatus "Poor" `
+                    -Author "Botroic Reporting Inc." `
+                    -PostIcon "http://urlToMyPng.com/pic.png" `
+                    -AttachmentTitle "Status report" `
+                    -AttachmentPretext "Issued by Server" `
+                    -AttachmentImageUrl "http://urlTomyAttachmentImg.com/pig.png" `
+                    -FooterIconUrl "http://urlTomyFooterImg.com/pog.png" `
 
-#### The Slack result of the Write-Slack-Message function call
+#### An example result of the Write-SlackMessage function call
 
 ![Capture1](/images/SlackBot2.PNG)
 
-#### The Slack result of the Write-Slack-Report function call
+#### An example result of Write-SlackReport function call
 
 ![Capture2](/images/SlackBot1.PNG)

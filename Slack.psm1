@@ -1,17 +1,39 @@
-﻿Function Write-Slack-Report {
+﻿Function Write-SlackReport {
       <# 
        .SYNOPSIS 
        This function can be used for status updates on reports executed by scripts. 
        .DESCRIPTION 
        This function attaches a status report update, and you can choose to alter the color 
        of the attachment bar, based on the keywords "Good", "Poor" or "Bad" which are passed in as the parameter "ReportStatus".
-       Also you can alter the name of the bot, the text content and author of the post. 
+       Also you can alter the name of the bot, the text content and author of the post. You can modify your report look by adding
+       urls to .png icons wherever you want. 
+
+       All fields are mandatory, except 'AttachmentPretext', 'AttachmentImageUrl' and 'FooterIconUrl'.
        .EXAMPLE 
-       Write-Slack-Report -WebHookUrl $myUrl -Botname $myBotname -ReportUrl $myReportUrlSource 
-                          -AttachmentInfoText "Report completed in $time seconds" -ReportStatus "Good/Poor/Bad" -Author "Timolein"
+       Write-Slack-Report -WebHookUrl $WBH `
+                   -Botname "RoBot" `
+                   -ReportUrl "http://myurl.com" `
+                   -AttachmentInfotext "Scanned 43 objects" `
+                   -ReportStatus "Poor" `
+                   -Author "Botroic Reporting Inc." `
+                   -PostIcon "http://urlToMyPng.com/pic.png" `
+                   -AttachmentTitle "Status report" `
+                   -AttachmentPretext "Issued by Server" `
+                   -AttachmentImageUrl "http://urlTomyAttachmentImg.com/pig.png" `
+                   -FooterIconUrl "http://urlTomyFooterImg.com/pog.png"
        .EXAMPLE 
-       Write-Slack-Report -WebHookUrl "http://..." -Botname "Tarner" -ReportUrl "C:\reports\rep.html" -AttachmentInfoText "Manual text"
-                          -ReportStatus "Good/Poor/Bad" -Author "Jumbotron" 
+       Write-Slack-Report -WebHookUrl $WBH `
+                   -Botname "Matax" `
+                   -ReportUrl "#" `
+                   -AttachmentInfotext $InfoText `
+                   -ReportStatus "Bad" `
+                   -Author "Matralax Reporting Inc." `
+                   -PostIcon $PostIcon `
+                   -AttachmentTitle "Status report" `
+                   -AttachmentPretext $AttachmentPretext `
+                   -AttachmentImageUrl $AttImgUrl `
+                   -FooterIconUrl $FooterIconUrl
+
        .PARAMETER WebHookUrl 
        The URL to the Slack incoming-webhook
        .PARAMETER Botname 
@@ -24,6 +46,16 @@
        String parameter, valid values are: "Good", "Poor" and "Bad". Will decide the color of the output (green, yellow and red).
        .PARAMETER Author
        The name of the author of the report 
+       .PARAMETER PostIcon
+       The url of the icon for the posting bot - .png format. Slack emoji formats are accepted as well.
+       .PARAMETER AttachmentTitle 
+       The title of the attachment
+        .PARAMETER AttachmentPretext
+       The descriptive pretext of the attachment
+       .PARAMETER AttachmentImageUrl
+       The url of the image for the attachment (company brand etc.) .png format. Slack emoji formats accepted.
+       .PARAMETER FooterIconUrl
+       The thumbnail appearing before the signature field in the attachment. (.png or slack emoji format)
       #> 
 
 
@@ -40,8 +72,17 @@
         [Parameter(Mandatory = $true)]
         [String]$ReportStatus,
         [Parameter(Mandatory = $true)]
-        [String]$Author
-
+        [String]$Author,
+        [Parameter(Mandatory = $true)]
+        [String]$PostIcon,
+        [Parameter(Mandatory = $true)]
+        [String]$AttachmentTitle,
+        [Parameter(Mandatory = $false)]
+        [String]$AttachmentPretext,
+        [Parameter(Mandatory = $false)]
+        [String]$AttachmentImageUrl,
+        [Parameter(Mandatory = $false)]
+        [String]$FooterIconUrl
     )
 
     BEGIN {
@@ -70,25 +111,26 @@
         $Attachments = @{
                           fallback = "This is the fallback";
                           color = $Color;
-                          pretext = "Please read the attached status";
+                          pretext = $AttachmentPretext;
                           author_name = $Author;
                           author_link = "#";
-                          author_icon = ":ghost:";
-                          title = "See full status report";
+                          author_icon = ":grinning:";
+                          title = $AttachmentTitle;
                           title_link = $ReportUrl;
                           text = $AttachmentInfotext;
                           fields = @( $AttachmentFields )
-                          image_url = "http://vignette2.wikia.nocookie.net/thecreatures/images/4/48/Yoshi.png/revision/latest?cb=20150109223009";
-                          thumb_url = "https://d1tmir783i2ibf.cloudfront.net/media/p/23x23/1418047564/tmmaster_ikon.png";
+                          image_url = $AttachmentImageUrl;
+                     #     thumb_url = $AttachmentThumbUrl;
                           footer = $FooterMessage
-                         
+                          footer_icon = $FooterIconUrl
                           } 
 
 
         $Payload = @{    text ="Automatic PowerShell reporting cycle completed";
                          username = $Botname; 
-                         icon_emoji = ":8ball:";
-                         attachments = @( $Attachments ) 
+                         icon_emoji = $PostIcon;
+                         attachments = @( $Attachments ); 
+                         mrkdwn = $true 
                      } | ConvertTo-Json -Depth 5
         
     }
@@ -100,12 +142,12 @@
 
     END {
 
-         Write-Verbose "Message posted to Slack"
+         Write-Host "Message posted to Slack"
     }
 }
 
 
-Function Write-Slack-Message {
+Function Write-SlackMessage {
     <# 
       .SYNOPSIS
       This function allows you to post a simple slack message into a channel, based on a web-hook url.
@@ -143,9 +185,9 @@ Function Write-Slack-Message {
     }
 
     END {
-        Write-Host -Message "Slack message sent"
+        Write-Host -Message "Message posted to Slack"
     }
 }
 
-Export-ModuleMember Write-Slack-Report
-Export-ModuleMember Write-Slack-Message 
+Export-ModuleMember Write-SlackReport
+Export-ModuleMember Write-SlackMessage 
