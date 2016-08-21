@@ -20,7 +20,7 @@ Type `Get-Help -Name <Function name>` for more info. The functions are documente
                     -PostIcon "http://urlToMyPng.com/pic.png" 
                     -AttachmentTitle "Status report" 
                     -AttachmentPretext "Issued by Server" 
-                    -AttachmentImageUrl "http://urlTomyAttachmentImg.com/pig.png" `
+                    -AttachmentImageUrl "http://urlTomyAttachmentImg.com/pig.png" 
                     -FooterIconUrl "http://urlTomyFooterImg.com/pog.png" `
 
 #### An example result of the Write-SlackMessage function call
