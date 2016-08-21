@@ -11,15 +11,15 @@ Type `Get-Help -Name <Function name>` for more info. The functions are documente
 
 `Write-SlackMessage -WebHookUrl $myWebHook -Message "My Slack message " -Botname "MyBotName" -Icon ":nerd_face:"`
 
-`Write-Slack-Report -WebHookUrl $WBH `
-                    -Botname "RoBot" `
-                    -ReportUrl "http://myurl.com" `
-                    -AttachmentInfotext "Scanned 43 objects" `
-                    -ReportStatus "Poor" `
-                    -Author "Botroic Reporting Inc." `
-                    -PostIcon "http://urlToMyPng.com/pic.png" `
-                    -AttachmentTitle "Status report" `
-                    -AttachmentPretext "Issued by Server" `
+`Write-Slack-Report -WebHookUrl $WBH 
+                    -Botname "RoBot" 
+                    -ReportUrl "http://myurl.com" 
+                    -AttachmentInfotext "Scanned 43 objects" 
+                    -ReportStatus "Poor" 
+                    -Author "Botroic Reporting Inc."
+                    -PostIcon "http://urlToMyPng.com/pic.png" 
+                    -AttachmentTitle "Status report" 
+                    -AttachmentPretext "Issued by Server" 
                     -AttachmentImageUrl "http://urlTomyAttachmentImg.com/pig.png" `
                     -FooterIconUrl "http://urlTomyFooterImg.com/pog.png" `
 
