@@ -5,6 +5,8 @@ Functions | Purpose
 Write-Slack-Message | Write a simple Slack message to your channel
 Write-Slack-Report | Write the results of a custom report to your Slack channel
 
+Type Get-Help for more info 
+
 **Examples**
 
 `Write-Slack-Message -WebHookUrl $myWebHook -Message "My Slack message " -Botname "MyBotName" -Icon ":nerd_face:"`
