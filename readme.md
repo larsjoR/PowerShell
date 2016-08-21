@@ -10,8 +10,10 @@ Write-Slack-Report | Write the results of a custom report to your Slack channel
 `Write-Slack-Message -WebHookUrl $myWebHook -Message "My Slack message " -Botname "MyBotName" -Icon ":nerd_face:"`
 `Write-Slack-Report -WebHookUrl $myWebHook -Botname "MyBotName" -ReportUrl "myReportUri" -AttachmentInfotext "This is a descriptive text" -ReportStatus "Poor" -Author "Testor IT"`
 
-#### Screen capture of the result in Slack
+#### The Slack result of the Write-Slack-Message function call
 
 ![Capture1](/images/SlackBot2.PNG)
+
+#### The Slack result of the Write-Slack-Report function call
 
 ![Capture2](/images/SlackBot1.PNG)
