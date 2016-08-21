@@ -109,7 +109,7 @@
                             short = "false";  
                           } 
 
-        ## The actual attachment of the message
+        ## The actual attachment of the message, see https://api.slack.com/docs/message-attachments for full info on fields
         $Attachments = @{
                           fallback = "This is the fallback";
                           color = $Color;
@@ -122,7 +122,6 @@
                           text = $AttachmentInfotext;
                           fields = @( $AttachmentFields )
                           image_url = $AttachmentImageUrl;
-                     #     thumb_url = $AttachmentThumbUrl;
                           footer = $FooterMessage
                           footer_icon = $FooterIconUrl
                           } 
@@ -138,12 +137,12 @@
     }
 
     PROCESS {
-    
+         ## Send the POST to the slack webhook, pipe Out-Null to hide response data.
          Invoke-WebRequest -Uri $WebHookUrl -ContentType application/json -Method POST -Body $Payload -UseBasicParsing | Out-Null
     }
 
     END {
-
+         ## Log message in console when done
          Write-Host "Message posted to Slack"
     }
 }
@@ -179,14 +178,17 @@ Function Write-SlackMessage {
     )
 
     BEGIN {
+        ## Wrap the payload and convert to Json.
         $Payload = @{ text = $Message; username = $Botname; icon_emoji = $icon } | ConvertTo-Json
     }
 
     PROCESS {
+        ## Send the POST to the slack webhook, pipe Out-Null to hide response data.
         Invoke-WebRequest -Uri $WebHookUrl -ContentType application/json -Method POST -Body $Payload  -UseBasicParsing | Out-Null 
     }
 
     END {
+        ## Log message in console when done
         Write-Host -Message "Message posted to Slack"
     }
 }
