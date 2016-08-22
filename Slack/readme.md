@@ -8,10 +8,10 @@ Write-SlackReport | Write the results of a custom report to your Slack channel
 Type `Get-Help -Name <Function name>` for more info and parameter listing. The functions are documented. 
 
 **Examples**
+```powershell
+Write-SlackMessage -WebHookUrl $myWebHook -Message "My Slack message " -Botname "MyBotName" -Icon ":nerd_face:"
 
-`Write-SlackMessage -WebHookUrl $myWebHook -Message "My Slack message " -Botname "MyBotName" -Icon ":nerd_face:"`
-
-`Write-SlackReport -WebHookUrl $WBH 
+Write-SlackReport -WebHookUrl $WBH 
                    -Botname "RoBot" 
                    -ReportUrl "http://myurl.com" 
                    -AttachmentInfotext "Scanned 43 objects" 
@@ -21,8 +21,8 @@ Type `Get-Help -Name <Function name>` for more info and parameter listing. The f
                    -AttachmentTitle "Status report" 
                    -AttachmentPretext "Issued by Server" 
                    -AttachmentImageUrl "http://urlTomyAttachmentImg.com/pig.png" 
-                   -FooterIconUrl "http://urlTomyFooterImg.com/pog.png" `
-
+                   -FooterIconUrl "http://urlTomyFooterImg.com/pog.png" 
+``` 
 #### An example result of the Write-SlackMessage function call
 
 ![Capture1](/images/SlackBot2.PNG)
