@@ -3,9 +3,9 @@
 Functions | Purpose
 ----------|--------
 Write-SlackMessage | Write a simple Slack message to your channel
-Write-SlackReport | Write the results of a custom report to your Slack channel
+Write-SlackReport | Write the results of a small customized report to your Slack channel
 
-Type `Powershell Get-Help -Name <Function name>` for more info and parameter listing. The functions are documented. 
+Type `Get-Help -Name <Function name>` for more info and parameter listing. The functions are documented. 
 
 **Examples**
 ```PowerShell
